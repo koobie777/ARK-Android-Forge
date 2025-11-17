@@ -20,6 +20,48 @@
 
 ARKFORGE is the Android development module of The ARK Ecosystem, designed to streamline and automate the Android ROM building process. Built with a space-themed interface and tmux-powered session management, ARKFORGE makes Android development accessible for both expert builders and newcomers (Cadets).
 
+## Go Rewrite Command Deck
+
+The legacy bash orchestrator now has a Go-based successor named `ark-android-forge`.  
+This new binary keeps the ARK theming while adding typed configuration (`forge.yaml`), Cobra commands, and structured logging.
+
+### Build & Run
+
+```bash
+go build ./cmd/ark-android-forge
+
+# Run the interactive deck
+./ark-android-forge menu
+
+# Run sub-commands directly
+./ark-android-forge preflight
+./ark-android-forge sync --manifest default.xml --force
+./ark-android-forge build --device waffle --target recovery
+./ark-android-forge release --output artifacts/manifest.yaml
+```
+
+### Configuration
+
+`forge.yaml` at the repository root replaces `config/ark-settings.conf` and is loaded via Viper (env vars still override fields):
+
+```yaml
+version: "1.1.4"
+commander: "koobie777"
+mode: "expert"
+jobs: 8
+build:
+  workspace: "./builds"
+  defaultType: "recovery"
+theme:
+  enabled: true
+  accent: "cyan"
+fleet:
+  - name: "OnePlus 12"
+    codename: "waffle"
+    role: "primary"
+    repository: "lineageos"
+```
+
 ### The ARK Ecosystem Components:
 - **ARKFORGE** (This Module) - Android ROM/Recovery building
 - **Orbital Command** - System management and monitoring (Coming Soon)

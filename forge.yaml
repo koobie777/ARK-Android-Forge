@@ -1,0 +1,19 @@
+version: "1.1.4"
+commander: "koobie777"
+mode: "expert"
+jobs: 8
+build:
+  workspace: "./builds"
+  defaultType: "recovery"
+theme:
+  enabled: true
+  accent: "cyan"
+fleet:
+  - name: "OnePlus 12"
+    codename: "waffle"
+    role: "primary"
+    repository: "lineageos"
+  - name: "OnePlus 10 Pro"
+    codename: "op515dl1"
+    role: "secondary"
+    repository: "evolution"
